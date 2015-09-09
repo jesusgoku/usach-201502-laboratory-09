@@ -33,12 +33,16 @@ void matrixProductScalarOption()
         MATRIX_MAX_DIMENSION
     );
 
-    matrixAllocMemory(&matrix);
+    if (NULL == matrixAllocMemory(&matrix)) {
+        printf("Error, imposible conseguir espacio.\n");
+        return;
+    }
     
     matrixRead(&matrix);
     
     result = matrixProductByScalar(scalar, &matrix);
     
+    printf("Resultado:\n");
     matrixPrint(&result);
 
     matrixFreeMemory(&matrix);
@@ -55,8 +59,10 @@ void matrixPlusMatrixOption()
     matrix02.rows = matrix01.rows;
     matrix02.columns = matrix01.columns;
 
-    matrixAllocMemory(&matrix01);
-    matrixAllocMemory(&matrix02);
+    if (NULL == matrixAllocMemory(&matrix01) || NULL == matrixAllocMemory(&matrix02)) {
+        printf("Error, imposible conseguir espacio.\n");
+        return;
+    }
 
     printf("Valores para la primera matriz\n");
     matrixRead(&matrix01);
@@ -65,6 +71,7 @@ void matrixPlusMatrixOption()
 
     matrixResult = matrixPlusMatrix(&matrix01, &matrix02);
 
+    printf("Resultado:\n");
     matrixPrint(&matrixResult);
 
     matrixFreeMemory(&matrix01);
