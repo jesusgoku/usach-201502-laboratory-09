@@ -24,10 +24,11 @@ int main (int argc, char *argv[])
         printMenuItems(menu, MENU_OPTIONS);
         inputOption = readValidOption("Ingresa un opción", 0, 5);
 
-        if (0 < inputOption && MENU_OPTIONS > inputOption) {
+        if (0 != inputOption) {
             for (int k = 0; k < MENU_OPTIONS; ++k) {
                 if (inputOption == menu[k].option) {
                     menu[k].process();
+                    break;
                 }
             }
         }
