@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #include <utilities.h>
 
@@ -20,4 +21,23 @@ int readValidOption(const char *message, const int min, const int max)
 bool isValidOption(const int option, const int min, const int max)
 {
     return option >= min && option <= max;
+}
+
+void titlePrint(char *title)
+{
+    int titleLength = strlen(title);
+
+    printf("\n\n");
+
+    for (int k = 0; k < titleLength; ++k) {
+        printf("=");
+    }
+    
+    printf("\n%s\n", title);
+
+    for (int k = 0; k < titleLength; ++k) {
+        printf("=");
+    }
+
+    printf("\n\n");
 }
