@@ -6,7 +6,7 @@
 
 void *matrixAllocMemory(Matrix *matrix)
 {
-    matrix->matrix = (float **) malloc(sizeof(float) * matrix->rows);
+    matrix->matrix = (float **) malloc(sizeof(float *) * matrix->rows);
 
     if (NULL == matrix->matrix) {
         return NULL;
@@ -25,7 +25,13 @@ void *matrixAllocMemory(Matrix *matrix)
 
 void matrixFreeMemory(Matrix *matrix)
 {
+    for (int k = 0; k < matrix->rows; ++k) {
+        free(*(matrix->matrix + k));
+        *(matrix->matrix + k) = NULL;
+    }
+
     free(matrix->matrix);
+
     matrix->matrix = NULL;
 }
 
