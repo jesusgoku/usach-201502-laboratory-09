@@ -114,3 +114,32 @@ void matrixProductMatrixOption()
     matrixFreeMemory(&matrix01);
     matrixFreeMemory(&matrix02);
 }
+
+void matrixTransposeOption()
+{
+    Matrix matrix, transpose;
+
+    titlePrint("Transponer matriz");
+
+    matrixReadRowsAndColumsSize(&matrix, MATRIX_MIN_DIMENSION, MATRIX_MAX_DIMENSION);
+
+    if (NULL == matrixAllocMemory(&matrix)) {
+        printf("Error, imposible conseguir espacio.\n");
+        return;
+    }
+
+    matrixRead(&matrix);
+
+    transpose = matrixTranspose(&matrix);
+
+    printf("Resultado:\n");
+    matrixPrint(&transpose);
+
+    matrixFreeMemory(&transpose);
+    matrixFreeMemory(&matrix);
+}
+
+void matrixDeterminantOption()
+{
+
+}

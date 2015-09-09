@@ -20,5 +20,7 @@ void printMenu();
 void matrixProductScalarOption();
 void matrixPlusMatrixOption();
 void matrixProductMatrixOption();
+void matrixTransposeOption();
+void matrixDeterminantOption();
 
 #endif // __PROGRAM_H__
