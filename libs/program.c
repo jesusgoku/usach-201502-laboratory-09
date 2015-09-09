@@ -136,5 +136,28 @@ void matrixTransposeOption()
 
 void matrixDeterminantOption()
 {
+    float determinant = 0;
+    Matrix matrix;
 
+    titlePrint("Determinante de la matriz");
+
+    matrixReadRowsAndColumsSize(&matrix, MATRIX_MIN_DIMENSION, MATRIX_MAX_DIMENSION);
+
+    if (matrix.rows != matrix.columns) {
+        printf("Error, debe ser una matriz cuadrada.\n");
+        return;
+    }
+
+    if (NULL == matrixAllocMemory(&matrix)) {
+        printf("Error, imposible conseguir espacio.\n");
+        return;
+    }
+
+    matrixRead(&matrix);
+
+    determinant = matrixDeterminat(&matrix);
+
+    printf("Resultado: %.2f", determinant);
+
+    matrixFreeMemory(&matrix);
 }
