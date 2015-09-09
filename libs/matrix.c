@@ -159,3 +159,47 @@ Matrix matrixTranspose(const Matrix *matrix)
 
     return transpose;
 }
+
+float matrixDeterminat(Matrix *matrix)
+{
+    float sum = 0, sub = 0, product = 1;
+
+    if (1 == matrix->rows) {
+        return matrix->matrix[0][0];
+    }
+
+    if (2 == matrix->rows) {
+        return matrix->matrix[0][0] * matrix->matrix[1][1]
+            - matrix->matrix[1][0] * matrix->matrix[0][1];
+    }
+
+    for (int x = 0; x < matrix->rows; ++x) {
+        product = 1;
+        for (int j = 0, k = x, y = 0; y < matrix->rows; ++y) {
+            product *= matrix->matrix[j][k];
+
+            ++j;
+
+            if ((++k) == matrix->rows) {
+                k = 0;
+            }
+        }
+        sum += product;
+    }
+
+    for (int x = 0; x < matrix->rows; ++x) {
+        product = 1;
+        for (int j = (matrix->rows - 1), k = x, y = 0; y < matrix->rows; ++y) {
+            product *= matrix->matrix[j][k];
+
+            --j;
+
+            if ((++k) == matrix->rows) {
+                k = 0;
+            }
+        }
+        sub += product;
+    }
+
+    return sum - sub;
+}

@@ -17,6 +17,7 @@ Matrix matrixProductByScalar(const float scalar, const Matrix *matrix);
 Matrix matrixPlusMatrix(const Matrix *matrix01, const Matrix *matrix02);
 Matrix matrixProductByMatrix(const Matrix *matrix01, const Matrix *matrix02);
 Matrix matrixTranspose(const Matrix *matrix);
+float matrixDeterminat(Matrix *matrix);
 
 
 #endif // __MATRIX_H__
