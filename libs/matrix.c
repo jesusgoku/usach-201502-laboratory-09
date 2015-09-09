@@ -49,6 +49,24 @@ void matrixPrint(const Matrix *matrix)
     }
 }
 
+Matrix matrixProductByScalar(const float scalar, const Matrix *matrix)
+{
+    Matrix result;
+
+    result.rows = matrix->rows;
+    result.columns = matrix->columns;
+
+    matrixAllocMemory(&result);
+
+    for (int j = 0; j < matrix->rows; ++j) {
+        for (int k = 0; k < matrix->columns; ++k) {
+            result.matrix[j][k] = (matrix->matrix[j][k]) * scalar;
+        }
+    }
+
+    return result;
+}
+
 // -- OLD VERSION
 void readMatrix(float *matrix, const int rows, const int columns)
 {

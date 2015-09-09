@@ -2,10 +2,13 @@
 #include <stdlib.h>
 
 #include <matrix.h>
+#include <utilities.h>
 #include <program.h>
 
 void printMenu()
 {
+    titlePrint("Operación de matrices");
+
     printf("%d.- Multiplicar una matriz por un numero.\n", OPTION_MATRIX_PRODUCT_SCALAR);
     printf("%d.- Sumar dos matrices.\n", OPTION_MATRIX_PLUS_MATRIX);
     printf("%d.- Multiplicar dos matrices.\n", OPTION_MATRIX_PRODUCT_MATRIX);
@@ -14,23 +17,33 @@ void printMenu()
     printf("%d.- Salir.\n", OPTION_EXIT);
 }
 
-void matrixProductScalar()
+void matrixProductScalarOption()
 {
-    int rows = 0, columns = 0;
     float scalar = 0;
-    float *matrix = NULL;
+    Matrix matrix, result;
 
-    readRowsAndColumnsSize(&rows, &columns, MATRIX_MIN_DIMENSION, MATRIX_MAX_DIMENSION);
+    titlePrint("Matriz por un escalar");
 
     printf("Ingresa el valor scalar: ");
     scanf("%f", &scalar);
 
-    matrix = (float *) malloc(sizeof(float) * rows * columns);
-    readMatrix(matrix, rows, columns);
-    productMatrixAndScalar(scalar, matrix, rows, columns);
-    printMatrix(matrix, rows, columns);
-    free(matrix);
-    matrix = NULL;
+    readRowsAndColumnsSize(
+        &(matrix.rows),
+        &(matrix.columns),
+        MATRIX_MIN_DIMENSION,
+        MATRIX_MAX_DIMENSION
+    );
+
+    matrixAllocMemory(&matrix);
+    
+    matrixRead(&matrix);
+    
+    result = matrixProductByScalar(scalar, &matrix);
+    
+    matrixPrint(&result);
+
+    matrixFreeMemory(&matrix);
+    matrixFreeMemory(&result);
 }
 
 void matrixPlusMatrix()

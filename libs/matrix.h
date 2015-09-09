@@ -14,6 +14,9 @@ typedef struct matrixDimension {
 
 void *matrixAllocMemory(Matrix *matrix);
 void matrixFreeMemory(Matrix *matrix);
+void matrixRead(Matrix *matrix);
+void matrixPrint(const Matrix *matrix);
+Matrix matrixProductByScalar(const float scalar, const Matrix *matrix);
 
 // -- OLD VERSION
 void readMatrix(float *matrix, const int rows, const int columns);

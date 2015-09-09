@@ -15,7 +15,7 @@ int main (int argc, char *argv[])
 
         switch (inputOption) {
             case OPTION_MATRIX_PRODUCT_SCALAR:
-                matrixProductScalar();
+                matrixProductScalarOption();
                 break;
             case OPTION_MATRIX_PLUS_MATRIX:
                 matrixPlusMatrix();
