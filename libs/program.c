@@ -79,6 +79,42 @@ void matrixPlusMatrixOption()
     matrixFreeMemory(&matrixResult);
 }
 
+void matrixProductMatrixOption()
+{
+    Matrix matrix01, matrix02, matrixResult;
+
+    titlePrint("Producto matriz por matriz");
+
+    printf("Filas y columnas primera matriz\n");
+    matrixReadRowsAndColumsSize(&matrix01, MATRIX_MIN_DIMENSION, MATRIX_MAX_DIMENSION);
+    printf("Filas y columnas segunda matriz\n");
+    matrixReadRowsAndColumsSize(&matrix02, MATRIX_MIN_DIMENSION, MATRIX_MAX_DIMENSION);
+
+    if (matrix01.columns != matrix02.rows) {
+        printf("Error: el número de columnas de la primera matriz debe ser el igual al número de filas de la segunda matriz.\n");
+        return;
+    }
+
+    if (NULL == matrixAllocMemory(&matrix01) || NULL == matrixAllocMemory(&matrix02)) {
+        printf("Error, imposible conseguir espacio.\n");
+        return;
+    }
+
+    printf("Valores para la primera matriz\n");
+    matrixRead(&matrix01);
+    printf("Valores para la segunda matriz\n");
+    matrixRead(&matrix02);
+
+    matrixResult = matrixProductByMatrix(&matrix01, &matrix02);
+
+    printf("Resultado:\n");
+    matrixPrint(&matrixResult);
+
+    matrixFreeMemory(&matrixResult);
+    matrixFreeMemory(&matrix01);
+    matrixFreeMemory(&matrix02);
+}
+
 void matrixProductMatrix()
 {
     matrixDimension dimensions01, dimensions02, dimensionsResult;

@@ -121,6 +121,27 @@ Matrix matrixPlusMatrix(const Matrix *matrix01, const Matrix *matrix02)
     return matrixResult;
 }
 
+Matrix matrixProductByMatrix(const Matrix *matrix01, const Matrix *matrix02)
+{
+    Matrix matrixResult;
+
+    matrixResult.rows = matrix01->rows;
+    matrixResult.columns = matrix02->columns;
+
+    matrixAllocMemory(&matrixResult);
+
+    for (int j = 0; j < matrixResult.rows; ++j) {
+        for (int k = 0; k < matrixResult.columns; ++k) {
+            matrixResult.matrix[j][k] = 0;
+            for (int n = 0; n < matrix01->columns; ++n) {
+                matrixResult.matrix[j][k] += matrix01->matrix[j][n] * matrix02->matrix[n][k];
+            }
+        }
+    }
+
+    return matrixResult;
+}
+
 // -- OLD VERSION
 void readMatrix(float *matrix, const int rows, const int columns)
 {
