@@ -47,12 +47,27 @@ void matrixRead(Matrix *matrix)
 
 void matrixPrint(const Matrix *matrix)
 {
+    matrixPrintRowDivider(matrix->columns, 9);
+
     for (int j = 0; j < matrix->rows; ++j) {
         for (int k = 0; k < matrix->columns; ++k) {
-            printf("| %.2f ", matrix->matrix[j][k]);
+            printf("| %6.2f ", matrix->matrix[j][k]);
         }
         printf("|\n");
+        matrixPrintRowDivider(matrix->columns, 9);
     }
+}
+
+void matrixPrintRowDivider(const int columns, const int columnSize)
+{
+    for (int k = 0; k < (columns * columnSize); ++k) {
+        if (0 == k || 0 == (k % columnSize)) {
+            printf("+");
+        } else {
+            printf("-");
+        }
+    }
+    printf("+\n");
 }
 
 void matrixReadRowsAndColumsSize(Matrix *matrix, const int min, const int max)
