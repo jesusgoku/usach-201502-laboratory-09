@@ -5,16 +5,11 @@
 #include <utilities.h>
 #include <program.h>
 
-void printMenu()
+void printMenuItems(const MenuItem menuItems[], const int items)
 {
-    titlePrint("Operación de matrices");
-
-    printf("%d.- Multiplicar una matriz por un numero.\n", OPTION_MATRIX_PRODUCT_SCALAR);
-    printf("%d.- Sumar dos matrices.\n", OPTION_MATRIX_PLUS_MATRIX);
-    printf("%d.- Multiplicar dos matrices.\n", OPTION_MATRIX_PRODUCT_MATRIX);
-    printf("%d.- Transponer matriz.\n", OPTION_MATRIX_TRANSPOSE);
-    printf("%d.- Calcular determinante.\n", OPTION_MATRIX_DETERMINANTE);
-    printf("%d.- Salir.\n", OPTION_EXIT);
+    for (int k = 0; k < items; ++k) {
+        printf("%d.- %s\n", menuItems[k].option, menuItems[k].name);
+    }
 }
 
 void matrixProductScalarOption()

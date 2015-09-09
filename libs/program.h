@@ -5,7 +5,7 @@
 #define OPTION_MATRIX_PLUS_MATRIX 2
 #define OPTION_MATRIX_PRODUCT_MATRIX 3
 #define OPTION_MATRIX_TRANSPOSE 4
-#define OPTION_MATRIX_DETERMINANTE 5
+#define OPTION_MATRIX_DETERMINANT 5
 #define OPTION_EXIT 0
 
 #define MATRIX_MIN_DIMENSION 1
@@ -14,9 +14,10 @@
 typedef struct MenuItem {
     char *name;
     int option;
+    void (*process)();
 } MenuItem;
 
-void printMenu();
+void printMenuItems(const MenuItem menuItems[], const int items);
 void matrixProductScalarOption();
 void matrixPlusMatrixOption();
 void matrixProductMatrixOption();
