@@ -16,7 +16,9 @@ void *matrixAllocMemory(Matrix *matrix);
 void matrixFreeMemory(Matrix *matrix);
 void matrixRead(Matrix *matrix);
 void matrixPrint(const Matrix *matrix);
+void matrixReadRowsAndColumsSize(Matrix *matrix, const int min, const int max);
 Matrix matrixProductByScalar(const float scalar, const Matrix *matrix);
+Matrix matrixPlusMatrix(const Matrix *matrix01, const Matrix *matrix02);
 
 // -- OLD VERSION
 void readMatrix(float *matrix, const int rows, const int columns);

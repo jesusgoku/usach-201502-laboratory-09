@@ -49,6 +49,21 @@ void matrixPrint(const Matrix *matrix)
     }
 }
 
+void matrixReadRowsAndColumsSize(Matrix *matrix, const int min, const int max)
+{
+    matrix->rows = readValidOption(
+        "Número de filas",
+        min,
+        max
+    );
+
+    matrix->columns = readValidOption(
+        "Número de columnas",
+        min,
+        max
+    );
+}
+
 Matrix matrixProductByScalar(const float scalar, const Matrix *matrix)
 {
     Matrix result;
@@ -65,6 +80,24 @@ Matrix matrixProductByScalar(const float scalar, const Matrix *matrix)
     }
 
     return result;
+}
+
+Matrix matrixPlusMatrix(const Matrix *matrix01, const Matrix *matrix02)
+{
+    Matrix matrixResult;
+
+    matrixResult.rows = matrix01->rows;
+    matrixResult.columns = matrix01->columns;
+
+    matrixAllocMemory(&matrixResult);
+
+    for (int j = 0; j < matrixResult.rows; ++j) {
+        for (int k = 0; k < matrixResult.columns; ++k) {
+            matrixResult.matrix[j][k] = matrix01->matrix[j][k] + matrix02->matrix[j][k];
+        }
+    }
+
+    return matrixResult;
 }
 
 // -- OLD VERSION

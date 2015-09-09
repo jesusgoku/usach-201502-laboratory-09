@@ -27,9 +27,8 @@ void matrixProductScalarOption()
     printf("Ingresa el valor scalar: ");
     scanf("%f", &scalar);
 
-    readRowsAndColumnsSize(
-        &(matrix.rows),
-        &(matrix.columns),
+    matrixReadRowsAndColumsSize(
+        &matrix,
         MATRIX_MIN_DIMENSION,
         MATRIX_MAX_DIMENSION
     );
@@ -46,25 +45,31 @@ void matrixProductScalarOption()
     matrixFreeMemory(&result);
 }
 
-void matrixPlusMatrix()
+void matrixPlusMatrixOption()
 {
-    int rows = 0, columns = 0;
-    float *matrix01 = NULL, *matrix02 = NULL, *matrixResult = NULL;
+    Matrix matrix01, matrix02, matrixResult;
 
-    readRowsAndColumnsSize(&rows, &columns, MATRIX_MIN_DIMENSION, MATRIX_MAX_DIMENSION);
-    matrix01 = (float *) malloc(sizeof(float) * rows * columns);
-    matrix02 = (float *) malloc(sizeof(float) * rows * columns);
-    matrixResult = (float *) malloc(sizeof(float) * rows * columns);
+    titlePrint("Suma de dos matrices");
+
+    matrixReadRowsAndColumsSize(&matrix01, MATRIX_MIN_DIMENSION, MATRIX_MAX_DIMENSION);
+    matrix02.rows = matrix01.rows;
+    matrix02.columns = matrix01.columns;
+
+    matrixAllocMemory(&matrix01);
+    matrixAllocMemory(&matrix02);
+
     printf("Valores para la primera matriz\n");
-    readMatrix(matrix01, rows, columns);
+    matrixRead(&matrix01);
     printf("Valores para la segunda matriz\n");
-    readMatrix(matrix02, rows, columns);
-    plusMatrixWithMatrix(matrixResult, matrix01, matrix02, rows, columns);
-    printMatrix(matrixResult, rows, columns);
-    free(matrixResult);
-    free(matrix02);
-    free(matrix01);
-    matrixResult = matrix02 = matrix01 = NULL;
+    matrixRead(&matrix02);
+
+    matrixResult = matrixPlusMatrix(&matrix01, &matrix02);
+
+    matrixPrint(&matrixResult);
+
+    matrixFreeMemory(&matrix01);
+    matrixFreeMemory(&matrix02);
+    matrixFreeMemory(&matrixResult);
 }
 
 void matrixProductMatrix()

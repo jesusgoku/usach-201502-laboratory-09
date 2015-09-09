@@ -18,7 +18,7 @@ typedef struct MenuItem {
 
 void printMenu();
 void matrixProductScalarOption();
-void matrixPlusMatrix();
+void matrixPlusMatrixOption();
 void matrixProductMatrix();
 
 #endif // __PROGRAM_H__

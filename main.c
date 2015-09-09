@@ -18,7 +18,7 @@ int main (int argc, char *argv[])
                 matrixProductScalarOption();
                 break;
             case OPTION_MATRIX_PLUS_MATRIX:
-                matrixPlusMatrix();
+                matrixPlusMatrixOption();
                 break;
             case OPTION_MATRIX_PRODUCT_MATRIX:
                 matrixProductMatrix();
