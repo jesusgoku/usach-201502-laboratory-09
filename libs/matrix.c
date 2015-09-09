@@ -141,3 +141,21 @@ Matrix matrixProductByMatrix(const Matrix *matrix01, const Matrix *matrix02)
 
     return matrixResult;
 }
+
+Matrix matrixTranspose(const Matrix *matrix)
+{
+    Matrix transpose;
+
+    transpose.rows = matrix->columns;
+    transpose.columns = matrix->rows;
+
+    matrixAllocMemory(&transpose);
+
+    for (int j = 0; j < transpose.rows; ++j) {
+        for (int k = 0; k < transpose.columns; ++k) {
+            transpose.matrix[j][k] = matrix->matrix[k][j];
+        }
+    }
+
+    return transpose;
+}
